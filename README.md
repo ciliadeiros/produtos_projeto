@@ -13,3 +13,6 @@ Endpoints (com exemplos de request/response)
 Regras de validação
 
 Prints (ou gif) do sistema funcionando
+
+REQUIREMENTS:
+pip install flask flask-cors flask-sqlalchemy
