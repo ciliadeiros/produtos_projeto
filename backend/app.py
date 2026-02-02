@@ -7,7 +7,8 @@ import os
 app = Flask(__name__)
 CORS(app)
 
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///database.db"
+basedir = os.path.abspath(os.path.dirname(__file__))
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'database.db')
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 db = SQLAlchemy(app)
@@ -43,7 +44,7 @@ def listar_produtos():
     return jsonify(ler_produtos()), 200
 
 # Rota: cria um produto
-@app.route("/produtos", methods=["POST"])
+@app.route("/criar_produtos", methods=["POST"])
 def criar_produto():
     produtos = ler_produtos()
     dados = request.get_json()

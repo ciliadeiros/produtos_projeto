@@ -14,7 +14,7 @@ function App() {
 
   // POST
   function cadastrarProduto() {
-    fetch("http://localhost:5000/produtos", {
+    fetch("http://localhost:5000/criar_produtos", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
