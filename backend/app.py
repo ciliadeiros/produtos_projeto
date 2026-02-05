@@ -38,6 +38,10 @@ class Produto(db.Model):
 with app.app_context():
     db.create_all()
 
+# Rota inicial só pra ter uma pagina inicial
+@app.route('/')
+def index():
+    return "Segura essa potência"
 # Rota: lista os produtos
 @app.route("/produtos", methods=["GET"])
 def listar_produtos():
@@ -66,13 +70,54 @@ def criar_produto():
 # Rota: edição as informações do produto
 @app.route("/produtos/<int:id>", methods=["PUT"])
 def editar_produto(id):
+    with open('produtos.json') as arquivo_json:
+        produtos = json.load(arquivo_json)
+
+    dados = request.get_json()
+
+    if not dados:
+        return jsonify({"erro": "o json não foi enviado"}), 400 #essa belezinha confere se o json foi enviado
+    
+    produto_encontrado = False
+    for produto in produtos:
+        if produto['id'] == id:
+            produto['titulo'] = dados.get('titulo', produto['titulo'])
+            produto['tipo'] = dados.get('tipo', produto['tipo'])
+            produto['status'] = dados.get('status', produto['status'])
+            produto['descricao'] = dados.get('descricao', produto['descricao'])
+            produto['valor'] = dados.get('valor', produto['valor'])
+            produto_encontrado = True
+            break
+    if not produto_encontrado:
+        return jsonify({"erro": "o produto não se econtra"}), 404
+    with open('produtos.json', 'w') as arquivo_json:
+        json.dump(produtos, arquivo_json, indent=4) 
     return jsonify({"msg": f"editar produto {id}"}), 200
 
 
 # Rota: editar apenas status do produto
 @app.route("/produtos/<int:id>/status", methods=["PATCH"])
 def alterar_status_produto(id):
-    # TODO: alterar status
+    with open('produtos.json') as arquivo_json:
+        produtos = json.load(arquivo_json)
+
+    dados = request.get_json()
+
+    if not dados:
+        return jsonify({"erro": "o json não foi enviado"}), 400
+    if 'status' not in dados:
+        return jsonify({"erro": "não tem status"}), 400 
+    
+    produto_encontrado = False
+    for produto in produtos:
+        if produto['id'] == id:
+            produto['status'] = dados.get('status', produto['status'])
+            produto_encontrado = True
+            break
+    if not produto_encontrado:
+        return jsonify({"erro": "o produto não se econtra"}), 404
+    with open('produtos.json', 'w') as arquivo_json:
+        json.dump(produtos, arquivo_json, indent=4) 
     return jsonify({"msg": f"alterar status do produto {id}"}), 200
 
 
