@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "titulo": "Arroz Parboilizado 5kg",
+    "tipo": "Alimentos",
+    "status": "Ativo",
+    "descricao": "Arroz tipo 1, pacote de 5kg",
+    "valor": 25.9
+  },
+  {
+    "id": 2,
+    "titulo": "Sabão em Pó",
+    "tipo": "Limpeza",
+    "status": "Ativo",
+    "descricao": "Sabão em pó brilhante, caixa 1.6kg",
+    "valor": 18.5
+  },
+  {
+    "id": 3,
+    "titulo": "Shampoo Hidratante",
+    "tipo": "Higiene",
+    "status": "Ativo",
+    "descricao": "Shampoo para cabelos secos 400ml",
+    "valor": 22.99
+  },
+  {
+    "id": 4,
+    "titulo": "Leite Integral",
+    "tipo": "Alimentos",
+    "status": "Ativo",
+    "descricao": "Leite UHT integral, caixa 1L",
+    "valor": 4.89
+  },
+  {
+    "id": 5,
+    "titulo": "Desinfetante Pinho",
+    "tipo": "Limpeza",
+    "status": "Ativo",
+    "descricao": "Desinfetante com aroma de pinho 2L",
+    "valor": 12.0
+  },
+  {
+    "id": 6,
+    "titulo": "Kitkat",
+    "tipo": "Alimentos",
+    "status": "Ativo",
+    "descricao": "Chocolate da marca Kitkat sabor ao leite",
+    "valor": 4.49
+  }
+]
